@@ -11,7 +11,7 @@ Uma calculadora simples de IMC (Índice de Massa Corporal).
 
 ## 📷 Captura de tela
 
-![Interface da Calculadora](./assets/img/captura-tela.png)
+![Interface da Calculadora](./assets/img/captura-tela2.png)
  
 ## 📁 Estrutura de pastas
 
@@ -23,10 +23,10 @@ calculadora-imc/
 ├── assets/
 │ └── img/
 │  └── logo.png
-|  └── captura-tela.png
+|  └── captura-tela2.png
 
 
-## 🛠️ Tecnologias
+## 🛠️ Tecnologias ultilizadas
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
