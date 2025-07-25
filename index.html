@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles.css">
   <title>Calculadora de IMC</title>
@@ -21,18 +21,30 @@
     <form id="formulario">
 
       <label for="peso">Peso:</label>
-      <input type="text" name="peso" id="peso" placeholder="Digite seu peso: kg" required>
+      <input type="text" name="peso" id="peso" placeholder="Ex: 70,5 kg" inputmode="decimal" required aria-label="Digite seu peso em quilos, separando decimais por vírgula">
 
       <label for="altura">Altura:</label>
-      <input type="text" name="altura" id="altura" placeholder="Digite sua altura:" required>
+      <input type="text" name="altura" id="altura" placeholder="EX: 1,70 m" inputmode="decimal" required aria-label="Digite sua altura em metros, separando decimais por vírgula">
 
       <button type="submit">Calcular</button>
 
       
     </form>
-      <div id="resultado" aria-live="polite" class="oculto"></div>
+
+    <div id="mensagem-erro" role="alert" class="mensagem-erro oculto" aria-live="assertive"></div>
+
+
+    <div id="resultado" aria-live="polite" class="oculto"></div>
     
   </main>
+
+  <footer>
+    <p>Desenvolvido por <strong>ClebstonXD</strong> |
+      <a href="https://www.linkedin.com/in/clebston-bezerra-973895b8" target="_blank" rel="noopener noreferrer">
+        LinkedIn
+      </a>
+    </p>
+  </footer>
   
   <script src="./script.js"></script>
 </body>

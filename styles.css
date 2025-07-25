@@ -1,4 +1,4 @@
-
+/* Reset e base */
 * {
   margin: 0;
   padding: 0;
@@ -22,6 +22,7 @@ body {
   overflow-x: hidden;
 }
 
+/* Layout principal */
 header {
   width: 100%;
   padding: 1rem;
@@ -35,6 +36,7 @@ figure img {
   border-radius: 50%;
   padding: 0.3125rem;
   width: 200px;
+  animation: girarSuave 4s ease-in-out infinite;
 }
 
 main {
@@ -56,6 +58,7 @@ main > h1 {
   color: #fff;
 }
 
+/* Formulário */
 form {
   max-width: 30rem;
   flex-direction: column;
@@ -64,13 +67,14 @@ form {
   width: 100%;
   padding: 3rem 1.5rem;
   border-radius: 8px;
-  color: #080808;
+  color: #fff;
 }
 
 label {
   font-size: 1.125rem;
   font-weight: bold;
   color: #f1ecec;
+
 }
 
 input {
@@ -80,6 +84,7 @@ input {
   margin: 0.25rem 0;
   width: 100%;
   background-color: #aca7a7;
+  line-height: 1.4;
 }
 
 input::placeholder {
@@ -100,11 +105,35 @@ button {
   font-size: 1.125rem;
   font-weight: bold;
   transition: 0.5s;
+  line-height: 1.4;
 }
 
 button:hover {
   transform: scale(1.05);
   background-color: #66a19a;
+}
+
+input:focus, button:focus {
+  outline: 2px solid #30a898;
+  outline-offset: 2px;
+}
+
+/* Mensagens */
+.mensagem-erro {
+  background-color: #ff4d4d;
+  color: #fff;
+  font-weight: bold;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 30rem;
+  width: 100%;
+  display: none;
+}
+
+.mensagem-erro.show {
+  display: block;
 }
 
 #resultado {
@@ -129,7 +158,26 @@ button:hover {
   display: none;
 }*/
 
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #505050;
+  background-color: #0c0b29;
+  margin-top: 2rem;
+}
 
+footer a {
+  color: #0077b5; /* cor do LinkedIn */
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsividade */
 @media (max-width: 480px) {
   html {
     font-size: 14px;
@@ -151,3 +199,19 @@ button:hover {
     font-size: 1rem;
   }
 }
+
+/* Animação para o logo */
+@keyframes girarSuave {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(3deg) scale(1.05);
+  }
+
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
