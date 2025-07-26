@@ -21,12 +21,17 @@
     <form id="formulario">
 
       <label for="peso">Peso:</label>
-      <input type="text" name="peso" id="peso" placeholder="Ex: 70,5 kg" inputmode="decimal" required aria-label="Digite seu peso em quilos, separando decimais por vírgula">
+      <div class="input-continer">
+        <input type="text" name="peso" id="peso" placeholder="Ex: 70,5 kg" required />
+        <span class="unidade"></span>
+      </div>
 
       <label for="altura">Altura:</label>
-      <input type="text" name="altura" id="altura" placeholder="EX: 1,70 m" inputmode="decimal" required aria-label="Digite sua altura em metros, separando decimais por vírgula">
+      <div class="input-container">
+        <input type="text" name="altura" id="altura" placeholder="EX: 1,70 m" required />
+        <span class="unidade"></span>
 
-      <button type="submit">Calcular</button>
+      <button type="submit">Calcular IMC</button>
 
       
     </form>

@@ -74,23 +74,30 @@ label {
   font-size: 1.125rem;
   font-weight: bold;
   color: #f1ecec;
-
+  margin-top: 1rem;
+  align-self: flex-start;
 }
 
 input {
   border: none;
   border-radius: 5px;
   padding: 0.8rem;
-  margin: 0.25rem 0;
+  margin: 0.3rem;
   width: 100%;
   background-color: #aca7a7;
   line-height: 1.4;
+  font-size: 1rem;
 }
 
 input::placeholder {
   color: #3a3737;
   font-weight: bold;
   font-size: 0.9375rem;
+}
+
+input:focus, button:focus {
+  outline: 2´px solid #30a898;
+  outline-offset: 2px;
 }
 
 button {
@@ -111,11 +118,6 @@ button {
 button:hover {
   transform: scale(1.05);
   background-color: #66a19a;
-}
-
-input:focus, button:focus {
-  outline: 2px solid #30a898;
-  outline-offset: 2px;
 }
 
 /* Mensagens */
@@ -154,16 +156,24 @@ input:focus, button:focus {
   display: block;
 }
 
-/*.oculto {
-  display: none;
-}*/
+/* Acessibilidade */
+[role="alert"] {
+  background-color: #ff4d4d;
+  color: #fff;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  max-width: 30rem;
+  width: 100%;
+}
 
 /* Footer */
 footer {
   text-align: center;
   padding: 1rem;
   font-size: 1rem;
-  color: #505050;
+  color: #bbb;
   background-color: #0c0b29;
   margin-top: 2rem;
 }

@@ -5,28 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const pesoInput = document.getElementById("peso");
   const alturaInput = document.getElementById("altura");
 
-  // Máscara de KG automática no peso
+  // Formatação dinâmica de peso
   pesoInput.addEventListener("input", () => {
-    let valor = pesoInput.value.replace("kg", "");
-
-    // Substitui vírgula por ponto só internamente, visualmente continua com vírgula
-    valor = valor.replace(/[^\d,]/g, ""); // Apenas números e vírgula
-    const partes = valor.split(",");
-
-    if (partes.length > 2) {
-      valor = partes[0] + "," + partes[1]; // Impede múltiplas vírgulas
+    let valor = pesoInput.value.replace(/\D/g, "");
+    if (valor.length > 4) valor = valor.slice(0, 4);
+    if (valor.length >= 2) {
+      valor = valor.slice(0, -1) + "," + valor.slice(-1);
     }
-
-    if (partes[1]) {
-      partes[1] = partes[1].slice(0, 2); // Limita a 2 casas decimais
-    }
-
-    pesoInput.value = partes.join(",");
-  });
-
-  // Permite apagar corretamente o peso
-  pesoInput.addEventListener("focus", () => {
-    pesoInput.value = pesoInput.value.replace("kg", "");
+    pesoInput.value = valor;
   });
 
   pesoInput.addEventListener("blur", () => {
@@ -35,47 +21,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Limita altura a 2 casas decimais
-  alturaInput.addEventListener("input", () => {
-    let valor = alturaInput.value.replace(/[^\d,]/g, "");
-    const partes = valor.split(",");
-
-    if (partes.length > 2) {
-      valor = partes[0] + "," + partes[1];
-    }
-
-    if (partes[1]) {
-      partes[1] = partes[1].slice(0, 2);
-    }
-
-    alturaInput.value = partes.join(",");
+  pesoInput.addEventListener("focus", () => {
+    pesoInput.value = pesoInput.value.replace("kg", "");
   });
 
+  // Formatação dinâmica de altura
+  alturaInput.addEventListener("input", () => {
+    let valor = alturaInput.value.replace(/\D/g, "");
+    if (valor.length > 3) valor = valor.slice(0, 3);
+    if (valor.length >= 2) {
+      valor = valor.slice(0, -2) + "," + valor.slice(-2);
+    }
+    alturaInput.value = valor;
+  });
+
+  alturaInput.addEventListener("blur", () => {
+    if (alturaInput.value && !alturaInput.value.endsWith("m")) {
+      alturaInput.value += "m";
+    }
+  });
+
+  alturaInput.addEventListener("focus", () => {
+    alturaInput.value = alturaInput.value.replace("m", "");
+  });
+
+  // Cálculo do IMC
   form.addEventListener("submit", calcular);
 
   function calcular(event) {
     event.preventDefault();
 
-    const pesoStr = pesoInput.value.replace("kg", "").trim();
-    const alturaStr = alturaInput.value.trim();
+    let pesoStr = pesoInput.value.replace("kg", "").replace(",", ".");
+    let alturaStr = alturaInput.value.replace("m", "").replace(",", ".");
 
-    // Verifica se foi usado ponto em vez de vírgula
-    if (pesoStr.includes(".") || alturaStr.includes(".")) {
-      resultado.textContent = "Use vírgula (,) como separador decimal. Exemplo: 70,5";
+    const peso = parseFloat(pesoStr);
+    const altura = parseFloat(alturaStr);
+
+    if (isNaN(peso) || isNaN(altura) || peso <= 0 || altura <= 0 || altura >= 3) {
+      resultado.innerHTML = `<div role="alert">Por favor, preencha os campos com valores válidos.</div>`;
       resultado.classList.add("show");
       return;
     }
 
-    const peso = parseFloat(pesoStr.replace(",", "."));
-    const altura = parseFloat(alturaStr.replace(",", "."));
-
-    if (isNaN(peso) || isNaN(altura)) {
-      resultado.textContent = "Por favor, preencha os campos com valores válidos.";
-      resultado.classList.add("show");
-      return;
-    }
-
-    // Validações realistas
     if (peso < 20 || peso > 300) {
       resultado.textContent = "Peso inválido. Use um valor entre 20kg e 300kg.";
       resultado.classList.add("show");
@@ -83,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (altura < 0.5 || altura > 2.5) {
-      resultado.textContent = "Altura inválida. Use um valor entre 0,5m e 2,5m. Exemplo: 1,70";
+      resultado.textContent = "Altura inválida. Use um valor entre 0,5m e 2,5m.";
       resultado.classList.add("show");
       return;
     }
@@ -95,13 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (imc < 18.5) {
       classificacao = "Você está abaixo do peso";
-    } else if (imc >= 18.5 && imc <= 24.9) {
+    } else if (imc <= 24.9) {
       classificacao = "Seu peso está normal";
-    } else if (imc >= 25 && imc <= 29.9) {
+    } else if (imc <= 29.9) {
       classificacao = "Você está no Sobrepeso";
-    } else if (imc >= 30 && imc <= 34.9) {
+    } else if (imc <= 34.9) {
       classificacao = "Você está com Obesidade Grau I";
-    } else if (imc >= 35 && imc <= 39.9) {
+    } else if (imc <= 39.9) {
       classificacao = "Você está com Obesidade Grau II";
     } else {
       classificacao = "Você está com Obesidade Mórbida Grau III";
