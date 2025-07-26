@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const pesoInput = document.getElementById("peso");
   const alturaInput = document.getElementById("altura");
 
+  pesoInput.value = "";
+  alturaInput.value = "";
   // Formatação dinâmica de peso
   pesoInput.addEventListener("input", () => {
     let valor = pesoInput.value.replace(/\D/g, "");
