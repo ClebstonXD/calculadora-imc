@@ -11,7 +11,7 @@ Uma calculadora simples de IMC (Índice de Massa Corporal).
 
 ## 📷 Captura de tela
 
-![Interface da Calculadora](./assets/img/captura-tela2.png)
+![Interface da Calculadora](./assets/img/captura-tela-atual.png)
  
 ## 📁 Estrutura de pastas
 
